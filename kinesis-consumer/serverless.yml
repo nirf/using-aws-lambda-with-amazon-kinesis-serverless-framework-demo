@@ -1,0 +1,24 @@
+service: kinesis-consumer
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  memorySize: 256
+  timeout: 3
+  region: eu-west-1
+
+functions:
+  consumer:
+    handler: src/handlers/consumer.handler
+    name: kinesis-consumer
+  producer:
+    handler: src/handlers/producer.handler
+    name: kinesis-producer
+
+plugins:
+  - serverless-bundle
+custom:
+  bundle:
+    linting: false
