@@ -1,0 +1,6 @@
+DemoStream:
+  Type: AWS::Kinesis::Stream
+  Properties:
+    Name: eventStream
+    RetentionPeriodHours: 24
+    ShardCount: 1

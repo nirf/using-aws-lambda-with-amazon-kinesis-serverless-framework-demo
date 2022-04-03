@@ -8,14 +8,34 @@ provider:
   memorySize: 256
   timeout: 3
   region: eu-west-1
+  iamRoleStatements:
+    - ${file(iam/DemoStreamIAM.yml):DemoStreamIAM}
 
 functions:
   consumer:
     handler: src/handlers/consumer.handler
     name: kinesis-consumer
+    events:
+      - stream:
+          type: kinesis
+          arn:
+            Fn::GetAtt:
+              - DemoStream
+              - Arn
   producer:
     handler: src/handlers/producer.handler
     name: kinesis-producer
+    events:
+      - http:
+          method: post
+          path: producer
+
+resources:
+  Resources:
+    DemoStream: ${file(resources/DemoStream.yml):DemoStream}
+
+outputs:
+  DemoStreamArn:
 
 plugins:
   - serverless-bundle
