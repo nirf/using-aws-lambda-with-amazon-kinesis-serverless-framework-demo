@@ -1,0 +1,23 @@
+{
+  "Records": [
+    {
+      "kinesis": {
+        "kinesisSchemaVersion": "1.0",
+        "partitionKey": "0f9dce98-9923-4c81-b23b-fbd03e2193a2",
+        "sequenceNumber": "49628305022448008140897643343556418938781235077330239490",
+        "data": {
+          "name": "Nir",
+          "age": 37
+        },
+        "approximateArrivalTimestamp": 1649232200.165
+      },
+      "eventSource": "aws:kinesis",
+      "eventVersion": "1.0",
+      "eventID": "shardId-000000000000:49628305022448008140897643036345398584131266856460746754",
+      "eventName": "aws:kinesis:record",
+      "invokeIdentityArn": "arn:aws:iam::399971917915:role/kinesis-consumer-dev-eu-west-1-lambdaRole",
+      "awsRegion": "eu-west-1",
+      "eventSourceARN": "arn:aws:kinesis:eu-west-1:399971917915:stream/demoStream"
+    }
+  ]
+}

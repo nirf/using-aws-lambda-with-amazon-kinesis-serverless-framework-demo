@@ -25,6 +25,8 @@ functions:
   producer:
     handler: src/handlers/producer.handler
     name: kinesis-producer
+    environment:
+      STREAM_NAME: !Ref DemoStream
     events:
       - http:
           method: post
@@ -33,9 +35,6 @@ functions:
 resources:
   Resources:
     DemoStream: ${file(resources/DemoStream.yml):DemoStream}
-
-outputs:
-  DemoStreamArn:
 
 plugins:
   - serverless-bundle
