@@ -9,7 +9,8 @@
 ## producer
 bla bla
 ## consumer
-bla bla
+### list event source mappings
+`aws lambda list-event-source-mappings --function-name kinesis-consumer`
 ## Usage
 ### Deployment
 In order to deploy the demo, you need to run the following command:
@@ -33,8 +34,8 @@ $ serverless remove
 ## Links
 This project is inspired by [Using AWS Lambda with Amazon Kinesis](https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
 \
-[Serverless Framework](https://www.serverless.com/framework/docs/getting-started)
+Serverless Framework [Serverless Framework](https://www.serverless.com/framework/docs/getting-started), [Serverless Kinesis Streams](https://www.serverless.com/framework/docs/providers/aws/events/streams)
 \
-Node.js middleware engine for AWS Lambda [middy](https://middy.js.org/) [middy/event-normalizer](https://www.npmjs.com/package/@middy/event-normalizer)
+Node.js middleware engine for AWS Lambda [middy](https://middy.js.org/), [middy/event-normalizer](https://www.npmjs.com/package/@middy/event-normalizer)
 
 

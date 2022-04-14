@@ -1,0 +1,4 @@
+DeadLetterQueue:
+  Type: AWS::SQS::Queue
+  Properties:
+    QueueName: deadLetterQueue

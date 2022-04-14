@@ -22,6 +22,7 @@ functions:
             Fn::GetAtt:
               - DemoStream
               - Arn
+          parallelizationFactor: 2
   producer:
     handler: src/handlers/producer.handler
     name: kinesis-producer
@@ -35,6 +36,7 @@ functions:
 resources:
   Resources:
     DemoStream: ${file(resources/DemoStream.yml):DemoStream}
+    DeadLetterQueue: ${file(resources/DLQ.yml):DeadLetterQueue}
 
 plugins:
   - serverless-bundle
