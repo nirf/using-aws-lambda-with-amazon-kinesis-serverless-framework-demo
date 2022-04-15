@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid'
 // locking the api version
 const kinesis = new Kinesis({apiVersion: '2013-12-03'})
 
-async function producer(event, context) {
+async function financialDataProducer(event, context) {
     if (!event.body) {
         return {
             statusCode: 400, body: JSON.stringify({message: 'Bad request - No body was found'})
@@ -30,4 +30,4 @@ async function producer(event, context) {
     }
 }
 
-export const handler = producer
+export const handler = financialDataProducer
