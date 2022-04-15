@@ -12,9 +12,19 @@ provider:
     - ${file(iam/DemoStreamIAM.yml):DemoStreamIAM}
 
 functions:
-  consumer:
-    handler: src/handlers/consumer.handler
-    name: kinesis-consumer
+#  get financial data from yahoo finance api npm package and set it in the project director for simulations
+  financialDataProducer:
+    handler: src/handlers/financialDataProducer.handler
+    name: financialDataProducer
+    environment:
+      STREAM_NAME: !Ref DemoStream
+    events:
+      - http:
+          method: post
+          path: producer
+  aggregatorConsumer:
+    handler: src/handlers/aggregatorConsumer.handler
+    name: aggregatorConsumer
     events:
       - stream:
           type: kinesis
@@ -22,16 +32,49 @@ functions:
             Fn::GetAtt:
               - DemoStream
               - Arn
-          parallelizationFactor: 2
-  producer:
-    handler: src/handlers/producer.handler
-    name: kinesis-producer
-    environment:
-      STREAM_NAME: !Ref DemoStream
+          consumer: true
+#         You are not allowed to have concurrent batch processing with parallelization factor if you enable tumbling windows
+          parallelizationFactor: 1
+          tumblingWindowInSeconds: 60
+  amazonConsumer:
+    handler: src/handlers/amazonConsumer.handler
+    name: amazonConsumer
     events:
-      - http:
-          method: post
-          path: producer
+      - stream:
+          type: kinesis
+          arn:
+            Fn::GetAtt:
+              - DemoStream
+              - Arn
+          consumer: true
+          filterPatterns:
+            - data:
+                symbol: [AMZN]
+  googleConsumer:
+    handler: src/handlers/googleConsumer.handler
+    name: googleConsumer
+    events:
+      - stream:
+          type: kinesis
+          arn:
+            Fn::GetAtt:
+              - DemoStream
+              - Arn
+          consumer: true
+          filterPatterns:
+            - data:
+                symbol: [GOOG]
+  dlqConsumer:
+    handler: src/handlers/dlqConsumer.handler
+    name: dlqConsumer
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt:
+              - DeadLetterQueue
+              - Arn
+          batchSize: 1
+
 
 resources:
   Resources:
