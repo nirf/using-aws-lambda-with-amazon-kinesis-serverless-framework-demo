@@ -8,20 +8,8 @@ provider:
   memorySize: 256
   timeout: 3
   region: eu-west-1
-  iamRoleStatements:
-    - ${file(iam/DemoStreamIAM.yml):DemoStreamIAM}
 
 functions:
-#  get financial data from yahoo finance api npm package and set it in the project director for simulations
-  financialDataProducer:
-    handler: src/handlers/financialDataProducer.handler
-    name: financialDataProducer
-    environment:
-      STREAM_NAME: !Ref DemoStream
-    events:
-      - http:
-          method: post
-          path: producer
   aggregatorConsumer:
     handler: src/handlers/aggregatorConsumer.handler
     name: aggregatorConsumer
@@ -35,12 +23,10 @@ functions:
           consumer: true
           # You are not allowed to have concurrent batch processing with parallelization factor if you enable tumbling windows
           parallelizationFactor: 1
-          # applicative configuration params
           tumblingWindowInSeconds: 60
           batchSize: 100
           startingPosition: LATEST
           batchWindow: 10
-          # error handling configuration params
           maximumRetryAttempts: 3
           maximumRecordAgeInSeconds: 120
           bisectBatchOnFunctionError: true
@@ -67,11 +53,9 @@ functions:
           filterPatterns:
             - data:
                 symbol: [AMZN]
-          # applicative configuration params
           batchSize: 10
           startingPosition: LATEST
           batchWindow: 1
-          # error handling configuration params
           maximumRetryAttempts: 3
           maximumRecordAgeInSeconds: 60
           bisectBatchOnFunctionError: true
@@ -98,11 +82,9 @@ functions:
           filterPatterns:
             - data:
                 symbol: [GOOG]
-          # applicative configuration params
           batchSize: 10
           startingPosition: LATEST
           batchWindow: 1
-          # error handling configuration params
           maximumRetryAttempts: 3
           maximumRecordAgeInSeconds: 60
           bisectBatchOnFunctionError: true

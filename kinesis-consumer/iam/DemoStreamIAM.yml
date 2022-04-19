@@ -1,7 +1,0 @@
-DemoStreamIAM:
-  Effect: Allow
-  Action:
-    - kinesis:PutRecord
-    - kinesis:PutRecords
-  Resource:
-    - Fn::GetAtt: [DemoStream, Arn]
