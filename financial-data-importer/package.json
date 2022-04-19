@@ -2,13 +2,14 @@
   "name": "financial-data-importer",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "produce": "node src/realTimeStockPricesProducer.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "yahoo-finance": "^0.3.7"
+    "aws-sdk": "^2.1116.0"
   }
 }

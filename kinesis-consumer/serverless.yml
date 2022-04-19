@@ -33,9 +33,25 @@ functions:
               - DemoStream
               - Arn
           consumer: true
-#         You are not allowed to have concurrent batch processing with parallelization factor if you enable tumbling windows
+          # You are not allowed to have concurrent batch processing with parallelization factor if you enable tumbling windows
           parallelizationFactor: 1
+          # applicative configuration params
           tumblingWindowInSeconds: 60
+          batchSize: 100
+          startingPosition: LATEST
+          batchWindow: 10
+          # error handling configuration params
+          maximumRetryAttempts: 3
+          maximumRecordAgeInSeconds: 120
+          bisectBatchOnFunctionError: true
+          functionResponseType: ReportBatchItemFailures
+          destinations:
+            onFailure:
+              arn:
+                Fn::GetAtt:
+                  - DeadLetterQueue
+                  - Arn
+              type: sqs
   amazonConsumer:
     handler: src/handlers/amazonConsumer.handler
     name: amazonConsumer
@@ -47,9 +63,26 @@ functions:
               - DemoStream
               - Arn
           consumer: true
+          parallelizationFactor: 2
           filterPatterns:
             - data:
                 symbol: [AMZN]
+          # applicative configuration params
+          batchSize: 10
+          startingPosition: LATEST
+          batchWindow: 1
+          # error handling configuration params
+          maximumRetryAttempts: 3
+          maximumRecordAgeInSeconds: 60
+          bisectBatchOnFunctionError: true
+          functionResponseType: ReportBatchItemFailures
+          destinations:
+            onFailure:
+              arn:
+                Fn::GetAtt:
+                  - DeadLetterQueue
+                  - Arn
+              type: sqs
   googleConsumer:
     handler: src/handlers/googleConsumer.handler
     name: googleConsumer
@@ -61,9 +94,26 @@ functions:
               - DemoStream
               - Arn
           consumer: true
+          parallelizationFactor: 2
           filterPatterns:
             - data:
                 symbol: [GOOG]
+          # applicative configuration params
+          batchSize: 10
+          startingPosition: LATEST
+          batchWindow: 1
+          # error handling configuration params
+          maximumRetryAttempts: 3
+          maximumRecordAgeInSeconds: 60
+          bisectBatchOnFunctionError: true
+          functionResponseType: ReportBatchItemFailures
+          destinations:
+            onFailure:
+              arn:
+                Fn::GetAtt:
+                  - DeadLetterQueue
+                  - Arn
+              type: sqs
   dlqConsumer:
     handler: src/handlers/dlqConsumer.handler
     name: dlqConsumer
