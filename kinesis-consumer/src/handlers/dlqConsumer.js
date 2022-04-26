@@ -1,11 +1,10 @@
 import middy from '@middy/core'
 import eventNormalizer from '@middy/event-normalizer'
 
-async function dlqConsumer(event, context) {
-    console.log(event)
-    console.log(event.Records[0])
+function dlqConsumer(event, context) {
+    console.log(event.Records[0].body)
 }
 
 export const handler = middy(dlqConsumer)
-    // Kinesis Stream: Base64 decode and JSON parse for each Records[i].kinesis.data
+    // SQS: JSON parse for each Records[i].body
     .use(eventNormalizer())

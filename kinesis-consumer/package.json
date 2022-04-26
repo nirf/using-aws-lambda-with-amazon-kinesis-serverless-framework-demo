@@ -12,6 +12,7 @@
     "@middy/core": "^2.5.7",
     "@middy/event-normalizer": "^2.5.7",
     "aws-sdk": "^2.1104.0",
+    "lodash": "^4.17.21",
     "serverless-bundle": "^5.3.0",
     "uuid": "^8.3.2"
   }
