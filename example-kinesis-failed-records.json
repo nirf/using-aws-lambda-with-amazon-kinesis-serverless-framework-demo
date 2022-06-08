@@ -1,0 +1,24 @@
+{
+  "requestContext": {
+    "requestId": "c9b8fa9f-5a7f-xmpl-af9c-0c604cde93a5",
+    "functionArn": "arn:aws:lambda:us-east-2:123456789012:function:myfunction",
+    "condition": "RetryAttemptsExhausted",
+    "approximateInvokeCount": 1
+  },
+  "responseContext": {
+    "statusCode": 200,
+    "executedVersion": "$LATEST",
+    "functionError": "Unhandled"
+  },
+  "version": "1.0",
+  "timestamp": "2019-11-14T00:38:06.021Z",
+  "KinesisBatchInfo": {
+    "shardId": "shardId-000000000001",
+    "startSequenceNumber": "49601189658422359378836298521827638475320189012309704722",
+    "endSequenceNumber": "49601189658422359378836298522902373528957594348623495186",
+    "approximateArrivalOfFirstRecord": "2019-11-14T00:38:04.835Z",
+    "approximateArrivalOfLastRecord": "2019-11-14T00:38:05.580Z",
+    "batchSize": 500,
+    "streamArn": "arn:aws:kinesis:us-east-2:123456789012:stream/mystream"
+  }
+}
