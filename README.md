@@ -1,18 +1,16 @@
-# aws-kinesis-to-lambda-demo
-**Using AWS Lambda with Amazon Kinesis**
+# using-aws-lambda-with-amazon-kinesis-serverless-framework-demo
+**Using AWS Lambda with Amazon Kinesis Serverless Framework Demo**
 ## Video Tutorial
 [![AWS Kinesis to Lambda Tutorial in Nodejs using Serverless framework](assets/images/thumbnail.png)](https://youtu.be/t6h32ccBxdM)
 
 ## Architecture
 ![Architecture](assets/images/Scaling%20based%20on%20Amazon%20SQS%20-%20Diagram.jpg)
 
-## financialDataProducer
-publish stock prices - will be removed later
 ## consumers
 ### amazonConsumer
-gets real time Amazon stock prices and decides if to buy or sell
+gets real time Amazon stock prices and decide if to buy or sell
 ### googleConsumer
-gets real time Google stock prices and decides if to buy or sell
+gets real time Google stock prices and decide if to buy or sell
 ###aggregatorConsumer
 get real time Google and Amazon stock prices and calculates the average prices in 60 seconds time window
 ### dlqConsumer
@@ -28,12 +26,6 @@ $ serverless deploy
 ```
 sls logs -f consumer -t
 sls logs -f financialDataProducer -t
-```
-### Send HTTP POST request to the financialDataProducer lambda
-```
-curl -d '{"name":"Nir","age":37}'  \
-https://xjp3sgfyvf.execute-api.eu-west-1.amazonaws.com/dev/producer
-
 ```
 ### Cleanup
 ```
