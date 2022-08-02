@@ -49,17 +49,9 @@ function initState(event) {
     return {
         AMZN: {
             sumOfAllPrices: 0, countOfRecords: 0
-        }, GOOG: {
+        },
+        GOOG: {
             sumOfAllPrices: 0, countOfRecords: 0
         }
     }
-}
-
-const x = {
-    Data: {
-        symbol: 'AMZN',
-        price: 3055.70,
-        date: '2019-11-14T00:38:06.021Z'
-    },
-    PartitionKey: 'AMZN'
 }

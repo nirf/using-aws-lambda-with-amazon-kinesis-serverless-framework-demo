@@ -1,5 +1,8 @@
 import AWS from 'aws-sdk'
 
+// const credentials = new AWS.SharedIniFileCredentials({profile: 'dev'})
+// AWS.config.credentials = credentials;
+
 const kinesis = new AWS.Kinesis({apiVersion: '2013-12-03', region: 'eu-west-1'})
 
 function publish(totalPublishTimeInSeconds, publishIntervalInMs) {

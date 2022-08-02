@@ -8,6 +8,7 @@ provider:
   memorySize: 256
   timeout: 3
   region: eu-west-1
+#  profile: dev
 
 functions:
   aggregatorConsumer:
@@ -20,6 +21,7 @@ functions:
             Fn::GetAtt:
               - DemoStream
               - Arn
+          # Enhanced fan-out consumer
           consumer: true
           # You are not allowed to have concurrent batch processing with parallelization factor if you enable tumbling windows
           parallelizationFactor: 1
@@ -48,7 +50,7 @@ functions:
             Fn::GetAtt:
               - DemoStream
               - Arn
-          consumer: true
+          # Shared throughput consumer
           parallelizationFactor: 2
           filterPatterns:
             - data:
@@ -77,7 +79,7 @@ functions:
             Fn::GetAtt:
               - DemoStream
               - Arn
-          consumer: true
+          # Shared throughput consumer
           parallelizationFactor: 2
           filterPatterns:
             - data:
