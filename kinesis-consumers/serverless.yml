@@ -23,9 +23,9 @@ functions:
               - Arn
           # Enhanced fan-out consumer
           consumer: true
+          tumblingWindowInSeconds: 60
           # You are not allowed to have concurrent batch processing with parallelization factor if you enable tumbling windows
           parallelizationFactor: 1
-          tumblingWindowInSeconds: 60
           batchSize: 100
           startingPosition: LATEST
           batchWindow: 10
