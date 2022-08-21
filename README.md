@@ -1,7 +1,7 @@
 # using-aws-lambda-with-amazon-kinesis-serverless-framework-demo
 **Using AWS Lambda with Amazon Kinesis Serverless Framework Demo**
 ## Video Tutorial
-[![AWS Kinesis to Lambda Tutorial in Nodejs using Serverless framework](assets/images/thumbnail.png)](https://youtu.be/t6h32ccBxdM)
+[![AWS Kinesis to Lambda Tutorial in Nodejs using Serverless framework](assets/images/tmn.png)](https://youtu.be/zLsHkSBNr7I)
 
 ## Architecture
 ![Architecture](assets/images/architecture.png)
